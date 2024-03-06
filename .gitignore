@@ -138,4 +138,5 @@ ui-tests/.pnp.*
 
 # Toegevoegd
 .venv/
+.env/
 *.code-workspace

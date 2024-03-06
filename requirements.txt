@@ -1,3 +1,6 @@
 qiskit[visualization]
 qiskit
 qiskit-ibm-runtime
+networkx
+matplotlib
+numpy
