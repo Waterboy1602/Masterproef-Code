@@ -42,6 +42,7 @@ def triangulation_for_triheatmap(M, N):
 
 
 values = getPieces()
+print(values)
 triangul = triangulation_for_triheatmap(sizeBoard, sizeBoard)
 cmaps = 'tab10' # Color map based out of 10 colors
 fig, ax = plt.subplots()

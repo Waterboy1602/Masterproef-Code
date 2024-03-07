@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+import networkx as nx
+import matplotlib.pyplot as plt
+import numpy as np
+
 def getPieces():
     # Get the pieces from the TetraVex game
     file = open("./dataFiles/TetraVex_3x3.txt", "r")
@@ -7,10 +11,12 @@ def getPieces():
     east = []
     south = []
     west = []
-    pieces = []
+    pieces = {}
+    i = 0
     for line in file:
         sides = line.split(" ")
-        pieces.append([int(sides[0]), int(sides[1]), int(sides[2]), int(sides[3])])
+        pieces[i] = [int(sides[0]), int(sides[1]), int(sides[2]), int(sides[3])]
+        i += 1
         # east.append([int(sides[1])])
         # south.append([int(sides[2])])
         # west.append([int(sides[3])])
@@ -62,20 +68,24 @@ board = [
 ##################################################################################
 
 
-def build_graph(puzzle):
-	size = len(puzzle)
-	graph = [[0] * size for _ in range(size)]
-	print(graph)
-	# for i in range(size):
-	# 	for j in range(size):
-	# 		if i < size - 1 and puzzle[i][j].bottom == puzzle[i + 1][j].top:
-	# 			graph[i * size + j][((i + 1) * size) + j] = 1
-	# 			graph[((i + 1) * size) + j][i * size + j] = 1
-	# 		if j < size - 1 and puzzle[i][j].right == puzzle[i][j + 1].left:
-	# 			graph[i * size + j][i * size + (j + 1)] = 1
-	# 			graph[i * size + (j + 1)][i * size + j] = 1
-	print(graph)
-	return graph
+def build_graph(pieces):
+    size = len(pieces)
+    graph = {}
+    for key1, value1 in pieces.items():
+        for key2, value2 in pieces.items():
+            if key1 == key2:
+                    continue
+            if value1[1] == value2[3] or value1[2] == value2[0]:           
+                graph.setdefault(key1, []).append(key2)
+    print(graph)
+    G = nx.Graph()
+    G.add_nodes_from(pieces.keys())
+    for node, edges in graph.items():
+        for edge in edges:
+            G.add_edge(node, edge)
+    nx.draw(G, with_labels = True)
+    plt.show()
+    return graph
 
 
 def is_safe(v, pos, path, graph):
@@ -106,9 +116,9 @@ def solve(puzzle):
 
 if __name__ == '__main__':
     print("Start solving the Tetravex puzzle...")
-    startBoard = getPieces()
-    print(startBoard)
-    graph = build_graph(startBoard)
+    pieces = getPieces()
+    print(pieces)
+    graph = build_graph(pieces)
     # solution = solver(startBoard, sizeBoard)
     # writeBoardToFile(solution, sizeBoard, 2)
     # "Found a solution"
