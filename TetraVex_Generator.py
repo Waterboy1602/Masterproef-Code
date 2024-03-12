@@ -53,5 +53,5 @@ def generateSolvableBoard(sizeGrid):
     print("Generated a board of size " + str(sizeGrid) + "x" + str(sizeGrid) + " and wrote it to a file.")
     
 if __name__ == '__main__':
-    sizeGrid = 3
+    sizeGrid = 2
     generateSolvableBoard(sizeGrid)
