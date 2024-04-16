@@ -1,6 +1,7 @@
-qiskit[visualization]
 qiskit
+qiskit-aer
 qiskit-ibm-runtime
 networkx
 matplotlib
 numpy
+ipykernel
