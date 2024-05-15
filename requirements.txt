@@ -6,3 +6,4 @@ matplotlib
 numpy
 ipykernel
 pennylane
+dwave-ocean-sdk
