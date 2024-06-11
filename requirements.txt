@@ -1,3 +1,4 @@
+python-dotenv
 qiskit
 qiskit-aer
 qiskit-ibm-runtime
