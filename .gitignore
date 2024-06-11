@@ -140,3 +140,4 @@ ui-tests/.pnp.*
 .venv/
 .env/
 *.code-workspace
+*.env
